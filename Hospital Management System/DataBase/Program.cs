@@ -1,7 +1,7 @@
-﻿public class Program
-{
-    public static void Main()
+﻿    public class Program
     {
-        Console.WriteLine("hello world");
+        public static void Main()
+        {
+            Console.WriteLine("hello world");
+        }
     }
-}
