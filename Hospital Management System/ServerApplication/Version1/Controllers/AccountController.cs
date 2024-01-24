@@ -14,6 +14,8 @@ namespace ServerApplication.Version1.Controllers
         {
             _accountRepository = accountRepository;
         }
+
+
         [HttpGet]
         public Task<BE.Account> GetUser(string userName , string password)
         {

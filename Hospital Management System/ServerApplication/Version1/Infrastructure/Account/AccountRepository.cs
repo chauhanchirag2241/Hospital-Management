@@ -4,8 +4,8 @@ namespace ServerApplication.Version1.Repository
 {
     public class AccountRepository : IAccountRepository
     {
-        private  IAccountRepository _accountRepository;
-     
+        private IAccountRepository _accountRepository;
+
         public Task<Account> CreateUser(Account account)
         {
             throw new NotImplementedException();
@@ -13,7 +13,7 @@ namespace ServerApplication.Version1.Repository
 
         public Task<Account> GetUser(string userName, string password)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
