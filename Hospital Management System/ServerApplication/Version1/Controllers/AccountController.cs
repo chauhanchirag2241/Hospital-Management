@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ASMSapi.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServerApplication.Version1.Models;
 using ServerApplication.Version1.Repository;
 using BE =  ServerApplication.Version1.Models;
 
@@ -17,7 +19,7 @@ namespace ServerApplication.Version1.Controllers
 
 
         [HttpGet]
-        public Task<BE.Account> GetUser(string userName , string password)
+        public Task<Response> GetUser(string userName , string password)
         {
             
             return _accountRepository.GetUser(userName, password);

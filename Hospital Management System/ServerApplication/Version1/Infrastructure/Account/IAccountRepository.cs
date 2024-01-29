@@ -1,10 +1,12 @@
-﻿using BE = ServerApplication.Version1.Models;
+﻿
+using ASMSapi.Model;
+using  ServerApplication.Version1.Models;
 
 namespace ServerApplication.Version1.Repository
 {
     public interface IAccountRepository
     {
-        public Task<BE.Account> GetUser(string userName , string password);
-        public Task<BE.Account> CreateUser(BE.Account account);
+        public Task<Response> GetUser(string userName , string password);
+        public Task<Response> CreateUser(Account account);
     }
 }
