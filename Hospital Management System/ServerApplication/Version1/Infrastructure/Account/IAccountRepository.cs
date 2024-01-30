@@ -6,7 +6,7 @@ namespace ServerApplication.Version1.Repository
 {
     public interface IAccountRepository
     {
-        public Task<Response> GetUser(string userName , string password);
-        public Task<Response> CreateUser(Account account);
+        public Task<List<Account>> GetUser(string userName , string password);
+        public Task<List<Account>> CreateUser(Account account);
     }
 }

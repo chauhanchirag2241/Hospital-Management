@@ -19,7 +19,7 @@ namespace ServerApplication.Version1.Controllers
 
 
         [HttpGet]
-        public Task<Response> GetUser(string userName , string password)
+        public Task<List<Account>> GetUser(string userName , string password)
         {
             
             return _accountRepository.GetUser(userName, password);

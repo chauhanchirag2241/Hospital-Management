@@ -1,4 +1,5 @@
 ﻿using ASMSapi.Model;
+using ServerApplication.Common;
 using ServerApplication.Version1.Models;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,39 +17,22 @@ namespace ServerApplication.Version1.Repository
             _configuration = configuration;
         }
 
-        public Task<Response> CreateUser(Account account)
+        public Task<List<Account>> CreateUser(Account account)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Response> GetUser(string userName, string password)
+        public async Task<List<Account>> GetUser(string userName, string password)
         {
             Response response = new Response();
             SqlConnection connecion = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
-            string query = $@"select * from serveruser ";
-            SqlDataAdapter da = new SqlDataAdapter("select * from serveruser", connecion);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            string query = $@"select * from serveruser where username = '{userName}' and password = '{password}' ";
 
-            List<Account> dataList = new List<Account>();
-            dataList = ConvertDataTableToList<Account>(dt);
+            DynamicModelConverter<Account> converter = new DynamicModelConverter<Account>();
+            List<Account> accountList = converter.FatchData(connecion.ConnectionString,query);
 
-            if (dataList != null && dataList.Count > 0)
-            {
-                response.StatusCode = 200;
-                response.StatusMessage = "Data found";
-               
-                response.DataList = dataList;
-            }
-            else
-            {
-                response.StatusCode = 100;
-                response.StatusMessage = "No data found";
-               ; // Set default value for model if needed
-                response.DataList = null;
-            }
-
-            return await Task.FromResult(response);
+            // return await accountList;
+            return accountList;
 
         }
 
