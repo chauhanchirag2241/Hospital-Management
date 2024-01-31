@@ -6,7 +6,80 @@ namespace ServerApplication.Common
 {
     public class DynamicModelConverter<T>
     {
-        public List<T> FatchData(string connectionString, string sqlQuery)
+        private string GetTableName()
+        {
+            // Assuming the table name is the same as the model name
+            return typeof(T).Name;
+        }
+
+        public void Insert(string connectionString, T model)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string tableName = GetTableName();
+                string columns = string.Join(", ", typeof(T).GetProperties().Select(prop => prop.Name));
+                string values = string.Join(", ", typeof(T).GetProperties().Select(prop => $"@{prop.Name}"));
+
+                string insertQuery = $"INSERT INTO {tableName} ({columns}) VALUES ({values})";
+
+                using (SqlCommand command = new SqlCommand(insertQuery, connection))
+                {
+                    foreach (var property in typeof(T).GetProperties())
+                    {
+                        command.Parameters.AddWithValue($"@{property.Name}", property.GetValue(model) ?? DBNull.Value);
+                    }
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Update(string connectionString, T model, int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string tableName = GetTableName();
+                string setClause = string.Join(", ", typeof(T).GetProperties().Select(prop => $"{prop.Name} = @{prop.Name}"));
+
+                string updateQuery = $"UPDATE {tableName} SET {setClause} WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                {
+                    foreach (var property in typeof(T).GetProperties())
+                    {
+                        command.Parameters.AddWithValue($"@{property.Name}", property.GetValue(model) ?? DBNull.Value);
+                    }
+
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Delete(string connectionString, int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string tableName = GetTableName();
+                string deleteQuery = $"DELETE FROM {tableName} WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<T> Get(string connectionString, string sqlQuery)
         {
             List<T> resultList = new List<T>();
 
@@ -41,6 +114,12 @@ namespace ServerApplication.Common
 
             return resultList;
         }
+    
     }
 
 }
+
+
+
+   
+
