@@ -15,7 +15,7 @@ namespace ServerApplication.Version1.Models
         public int DepartmentId { get; set; }
 
         [Column("employeetype")]
-        public  SG.enums.employeeType EmployeeType { get; set; }
+        public  int EmployeeType { get; set; }
 
         [Column("employeecode")]
         public int EmployeeCode { get; set; }
@@ -24,7 +24,7 @@ namespace ServerApplication.Version1.Models
         public string EmployeeName { get; set; }
 
         [Column("gender")]
-        public SG.enums.gender Gender { get; set; }
+        public int Gender { get; set; }
 
         [Column("mobileno")]
         public string MobileNo { get; set; }
@@ -37,5 +37,8 @@ namespace ServerApplication.Version1.Models
 
         [Column("jobspecification")]
         public string JobSpecification { get; set; }
+
+        [Column("isactive")]
+        public Boolean isActive { get; set; } = true;
     }
 }

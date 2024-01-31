@@ -28,8 +28,9 @@ namespace DataBase
                     // Add SQLite support to FluentMigrator
                     .AddSqlServer()
                     // Set the connection string
-                    //LAPTOP-DA7PTL4N\\SQLEXPRESS01;Database= hms_config;Trusted_Connection=True;TrustServerCertificate=True;
-                    .WithGlobalConnectionString("Server=DT095\\SQLEXPRESS;Database= hms_config;Trusted_Connection=True;TrustServerCertificate=True;")
+                    //Server = LAPTOP-DA7PTL4N\\SQLEXPRESS01;Database= hms_config;Trusted_Connection=True;TrustServerCertificate=True; LAPTOP-DA7PTL4N\SQLEXPRESS01
+                    //Server=DT095\\SQLEXPRESS;Database= hms_config;Trusted_Connection=True;TrustServerCertificate=True;
+                    .WithGlobalConnectionString("Server = LAPTOP-DA7PTL4N\\SQLEXPRESS01;Database = hms_config;Trusted_Connection=True;TrustServerCertificate=True;")
                     // Define the assembly containing the migrations
                     .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way

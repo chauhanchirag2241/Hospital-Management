@@ -29,7 +29,7 @@ namespace ServerApplication.Version1.Repository
             string query = $@"select * from serveruser where username = '{userName}' and password = '{password}' ";
 
             DynamicModelConverter<Account> converter = new DynamicModelConverter<Account>();
-            List<Account> accountList = converter.FatchData(connecion.ConnectionString,query);
+            List<Account> accountList = converter.Get(connecion.ConnectionString,query);
 
             // return await accountList;
             return accountList;

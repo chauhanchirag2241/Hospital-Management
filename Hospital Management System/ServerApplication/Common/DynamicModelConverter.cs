@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using System.Reflection;
+using System.ComponentModel.DataAnnotations;
 
 namespace ServerApplication.Common
 {
@@ -12,15 +13,20 @@ namespace ServerApplication.Common
             return typeof(T).Name;
         }
 
-        public void Insert(string connectionString, T model)
+        public int Insert(string connectionString, T model)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
                 string tableName = GetTableName();
-                string columns = string.Join(", ", typeof(T).GetProperties().Select(prop => prop.Name));
-                string values = string.Join(", ", typeof(T).GetProperties().Select(prop => $"@{prop.Name}"));
+                // string columns = string.Join(", ", typeof(T).GetProperties().Select(prop => prop.Name));
+                var columns = string.Join(", ", typeof(T).GetProperties()
+     .Where(prop => !prop.GetCustomAttributes(typeof(KeyAttribute), true).Any())
+     .Select(prop => prop.Name));
+                var values = string.Join(", ", typeof(T).GetProperties()
+     .Where(prop => !prop.GetCustomAttributes(typeof(KeyAttribute), true).Any())
+     .Select(prop => $"@{prop.Name}"));
 
                 string insertQuery = $"INSERT INTO {tableName} ({columns}) VALUES ({values})";
 
@@ -31,7 +37,7 @@ namespace ServerApplication.Common
                         command.Parameters.AddWithValue($"@{property.Name}", property.GetValue(model) ?? DBNull.Value);
                     }
 
-                    command.ExecuteNonQuery();
+                   return command.ExecuteNonQuery();
                 }
             }
         }
