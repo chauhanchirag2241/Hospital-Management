@@ -6,5 +6,6 @@ namespace ServerApplication.Version1.Infrastructure
     public interface IEmployeeRepository
     {
         public Task<int> createEmployee(Employee  employee);
+        public Task<List<Employee>> GetAllEmployee();
     }
 }

@@ -15,6 +15,12 @@ namespace ServerApplication.Version1.Controllers
         {
             _employeeRepository = employeeRepository;
         }
+        [HttpGet]
+        [Route("GetAllEmployee")]
+        public Task<List<Employee>> GetAllEmployee()
+        {
+            return _employeeRepository.GetAllEmployee();
+        }
 
         [HttpPost]
         [Route("Add")]

@@ -13,6 +13,22 @@ namespace ServerApplication.Version1.Infrastructure
         {
             _configuration = configuration;
         }
+        public async Task<List<Employee>> GetAllEmployee()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<Employee> converter = new DynamicModelConverter<Employee>();
+                List<Employee> employees = new List<Employee>();
+                string query = "select * from employee";
+                employees = converter.Get(connection.ConnectionString, query);
+                return employees;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<int> createEmployee(Employee employee)
         {
             try
