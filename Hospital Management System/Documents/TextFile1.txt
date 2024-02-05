@@ -38,3 +38,46 @@ viewrights
 updaterights
 delterights
 
+
+
+
+paitent visite table
+paitentvisiteid
+paitentid
+assigntoid
+isactive
+createdby
+createdon
+updatedby
+updatedon
+
+
+
+paitentvisitedetail table
+paitentvisitedetailid
+paitentvisiteid
+addedbyid
+date
+discription
+reportid
+createdby
+createdon
+updatedby
+updatedon
+
+
+reporttable
+
+reportid
+paitentid
+reportname
+addedbyid
+report
+discription
+isactive
+createby
+createdon
+updatedby
+updatedon
+
+
