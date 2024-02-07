@@ -22,7 +22,7 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IPaitentRepository, PaitentRepository>();
-
+builder.Services.AddScoped<IPaitentVisiteRepository,PaitentVisiteRepository>();
 
 var app = builder.Build();
 
