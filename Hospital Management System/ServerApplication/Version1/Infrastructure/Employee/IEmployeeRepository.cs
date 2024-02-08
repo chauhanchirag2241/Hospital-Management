@@ -7,5 +7,6 @@ namespace ServerApplication.Version1.Infrastructure
     {
         public Task<int> createEmployee(Employee  employee);
         public Task<List<Employee>> GetAllEmployee();
+        public Task<List<Employee>> GetDoctor();
     }
 }
