@@ -23,6 +23,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IPaitentRepository, PaitentRepository>();
 builder.Services.AddScoped<IPaitentVisiteRepository,PaitentVisiteRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 var app = builder.Build();
 

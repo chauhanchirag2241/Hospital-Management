@@ -14,7 +14,7 @@ namespace DataBase.DataBaseScripts
             {
                 Create.Table(tableName)
                       .WithColumn("departmentid").AsInt64().PrimaryKey().Identity()
-                      .WithColumn("departmentname").AsInt64().NotNullable()
+                      .WithColumn("departmentname").AsString().NotNullable()
                       .WithColumn("isactive").AsBoolean().NotNullable()
                       .WithColumn("createdby").AsInt64().NotNullable()
                       .WithColumn("createdon").AsDateTime().NotNullable()
