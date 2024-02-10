@@ -23,10 +23,10 @@ namespace ServerApplication.Version1.Controllers
         }
 
         [HttpGet]
-        [Route("GetDoctor")]
-        public Task<List<Employee>> GetDoctor()
+        [Route("GetDoctor/{depId}")]        
+        public Task<List<Employee>> GetDoctor(int depId)
         {
-            return _employeeRepository.GetDoctor();
+            return _employeeRepository.GetDoctor(depId);
         }
 
         [HttpPost]

@@ -81,3 +81,14 @@ updatedby
 updatedon
 
 
+insert into department values('Outpatient department',1,1,getdate(),1,GETDATE())
+insert into department values('Surgical department',1,1,getdate(),1,GETDATE())
+insert into department values('Inpatient department',1,1,getdate(),1,GETDATE())
+insert into department values('Pharmacy department',1,1,getdate(),1,GETDATE())
+insert into department values('Emergency Department',1,1,getdate(),1,GETDATE())
+insert into department values('Cardiology department',1,1,getdate(),1,GETDATE())
+insert into department values('adiology department (X-ray)',1,1,getdate(),1,GETDATE())
+insert into department values('Operation theater complex (OT)',1,1,getdate(),1,GETDATE())
+insert into department values('Clinical Department',1,1,getdate(),1,GETDATE())
+insert into department values('Other Staff',1,1,getdate(),1,GETDATE())
+

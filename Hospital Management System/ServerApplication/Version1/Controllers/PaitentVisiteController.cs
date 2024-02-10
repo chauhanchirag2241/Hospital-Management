@@ -18,7 +18,6 @@ namespace ServerApplication.Version1.Controllers
         [Route("Add")]
         public Task<int> Add(paitentvisite paitentvisite)
         {
-
             return _paitentVisiteRepository.createVisite(paitentvisite);
         }
     }

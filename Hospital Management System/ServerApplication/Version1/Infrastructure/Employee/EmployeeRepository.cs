@@ -13,14 +13,14 @@ namespace ServerApplication.Version1.Infrastructure
         {
             _configuration = configuration;
         }
-        public async Task<List<Employee>> GetDoctor()
+        public async Task<List<Employee>> GetDoctor(int depId)
         {
             try
             {
                 SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
                 DynamicModelConverter<Employee> converter = new DynamicModelConverter<Employee>();
                 List<Employee> employees = new List<Employee>();
-                string query = "select * from employee where employeetype = 1";
+                string query =  $"select * from employee where departmentid = {depId}";
                 employees = converter.Get(connection.ConnectionString, query);
                 return employees;
             }
