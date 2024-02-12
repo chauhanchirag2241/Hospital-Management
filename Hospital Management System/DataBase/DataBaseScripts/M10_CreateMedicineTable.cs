@@ -1,27 +1,23 @@
 ﻿using FluentMigrator;
+
 namespace DataBase.DataBaseScripts
 {
-    [Migration(7)]
-    public class M7_CreteEmployeeTable : ForwardOnlyMigration
+    [Migration(10)]
+    public class M10_CreateMedicineTable : ForwardOnlyMigration
     {
         public override void Up()
+        
         {
-            string tableName = "employee";
+            string tableName = "medicine";
 
             if (!Schema.Table(tableName).Exists())
             {
                 Create.Table(tableName)
-                      .WithColumn("employeeid").AsInt64().PrimaryKey().Identity()
-                      .WithColumn("departmentid").AsInt64().NotNullable()
-                      .WithColumn("employeetype").AsString().NotNullable()
-                      .WithColumn("employeecode").AsCustom("varchar(10)").Nullable()
-                      .WithColumn("employeename").AsString().Nullable()                      
-                      .WithColumn("gender").AsCustom("varchar(15)").NotNullable()
-                      .WithColumn("mobileno").AsCustom("varchar(15)").NotNullable()
-                      .WithColumn("password").AsCustom("varchar(15)")
-                      .WithColumn("email").AsCustom("varchar(50)").NotNullable()
-                      .WithColumn("qualification").AsString().Nullable()
-                      .WithColumn("jobspecification").AsString().Nullable()
+                      .WithColumn("medicineid").AsInt64().PrimaryKey().Identity()
+                      .WithColumn("medicinename").AsString().NotNullable()
+                      .WithColumn("amount").AsDecimal().NotNullable()
+                      .WithColumn("medicinecount").AsInt64().NotNullable()
+                      .WithColumn("discription").AsCustom("varchar(max)")                                            
                       .WithColumn("isactive").AsBoolean().NotNullable()
                       .WithColumn("createdby").AsInt64().NotNullable()
                       .WithColumn("createdon").AsDateTime().NotNullable()
@@ -35,6 +31,8 @@ namespace DataBase.DataBaseScripts
                 Create.ForeignKey($"FK_{tableName}_updatedby")
                       .FromTable(tableName).ForeignColumn("updatedby")
                       .ToTable("serveruser").PrimaryColumn("serveruserid");
+
+               
             }
         }
     }

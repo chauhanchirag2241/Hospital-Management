@@ -29,6 +29,9 @@ namespace ServerApplication.Version1.Models
         [Column("mobileno")]
         public string MobileNo { get; set; }
 
+        [Column("password")]
+        public string Password { get; set; } = "Bharat@123";
+
         [Column("email")]
         public string Email { get; set; }
 

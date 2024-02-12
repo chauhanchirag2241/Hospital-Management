@@ -92,3 +92,12 @@ insert into department values('Operation theater complex (OT)',1,1,getdate(),1,G
 insert into department values('Clinical Department',1,1,getdate(),1,GETDATE())
 insert into department values('Other Staff',1,1,getdate(),1,GETDATE())
 
+
+
+insert into medicine values('Adrenaline',13.7,500,'Injection - Makes your heart beat faster and your lungs breathe more efficiently',1,1,getdate(),1,getdate())
+insert into medicine values('Dopamine',29,500,' When a persons in heart failure or when their body isnt getting enough blood',1,1,getdate(),1,getdate());
+insert into medicine values('paracetamol',5,1000,'Relief of headaches and other minor aches and pains',1,1,getdate(),1,getdate())
+insert into medicine values('Dupixent',7,500,'Treatment of adults with atopic dermatitis',1,1,getdate(),1,getdate())
+insert into medicine values('Plan B',250,500,'To reduce the chance of pregnancy',1,1,getdate(),1,getdate())
+insert into medicine values('Lexapro',50,700,' To treat depression and generalized anxiety disorder (GAD)',1,1,getdate(),1,getdate())
+insert into medicine values('Nurtec',25,700,'prevent or treat migraine',1,1,getdate(),1,getdate())

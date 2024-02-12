@@ -25,6 +25,8 @@ builder.Services.AddScoped<IPaitentRepository, PaitentRepository>();
 builder.Services.AddScoped<IPaitentVisiteRepository,PaitentVisiteRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IServerUserRepository,ServerUserRepository>();
+builder.Services.AddScoped<IMedicineRepository, MedicineRepository>();
+
 
 var app = builder.Build();
 

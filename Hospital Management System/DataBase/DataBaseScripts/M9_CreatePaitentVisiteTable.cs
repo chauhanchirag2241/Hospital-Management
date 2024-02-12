@@ -15,13 +15,19 @@ namespace DataBase.DataBaseScripts
                 Create.Table(tableName)
                       .WithColumn("paitentvisiteid").AsInt64().PrimaryKey().Identity()
                       .WithColumn("paitentid").AsInt64().NotNullable()
+                      .WithColumn("addedbyid").AsInt64().NotNullable()
                       .WithColumn("assigntoid").AsInt64().NotNullable()
-                      .WithColumn("status").AsCustom("varchar(50)").NotNullable()                                   
+                      .WithColumn("date").AsDateTime().NotNullable()
+                      .WithColumn("description").AsCustom("varchar(max)").NotNullable()
+                      .WithColumn("medicineids").AsCustom("varchar(255)").Nullable()
+                      .WithColumn("reportid").AsInt64().Nullable()
+                      .WithColumn("status").AsCustom("varchar(50)").NotNullable()
                       .WithColumn("isactive").AsBoolean().NotNullable()
                       .WithColumn("createdby").AsInt64().NotNullable()
                       .WithColumn("createdon").AsDateTime().NotNullable()
                       .WithColumn("updatedby").AsInt64().NotNullable()
                       .WithColumn("updatedon").AsDateTime().NotNullable();
+
 
                 Create.ForeignKey($"FK_{tableName}_createdby")
                       .FromTable(tableName).ForeignColumn("createdby")
@@ -38,6 +44,10 @@ namespace DataBase.DataBaseScripts
                 Create.ForeignKey($"FK_{tableName}_assigntoid")
                      .FromTable(tableName).ForeignColumn("assigntoid")
                      .ToTable("employee").PrimaryColumn("employeeid");
+
+                Create.ForeignKey($"FK_{tableName}_addedbyid")
+                   .FromTable(tableName).ForeignColumn("addedbyid")
+                   .ToTable("employee").PrimaryColumn("employeeid");
             }
         }
     }
