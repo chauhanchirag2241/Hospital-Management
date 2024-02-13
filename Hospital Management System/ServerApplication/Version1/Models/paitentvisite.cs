@@ -16,11 +16,11 @@ namespace ServerApplication.Version1.Models
 
         public int AssignToId { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
-        public string Discription { get; set; }
-
-        public string MedicineId { get; set; }
+        public string Description { get; set; }
+    
+        public string MedicineIds { get; set; }
 
         public int ReportId { get; set; }
 

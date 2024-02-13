@@ -36,5 +36,12 @@ namespace ServerApplication.Version1.Controllers
 
             return _employeeRepository.createEmployee(employee);
         }
+
+        [HttpGet]
+        [Route("checkLogin/{userName}/{password}")]
+        public Task<List<Employee>> checkLogin(string userName, string password)
+        {
+            return _employeeRepository.checkLogin(userName, password);
+        }
     }
 }

@@ -66,5 +66,22 @@ namespace ServerApplication.Version1.Infrastructure
 
         }
 
+        public async Task<List<Employee>> checkLogin(string userName, string password)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<Employee> converter = new DynamicModelConverter<Employee>();
+                List<Employee> serverUser = new List<Employee>();
+                string query = $"select * from employee where employeename = '{userName}' and password = '{password}' ";
+                serverUser = converter.Get(connection.ConnectionString, query);
+                return serverUser;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
