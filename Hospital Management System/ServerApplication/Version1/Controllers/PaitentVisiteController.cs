@@ -20,5 +20,13 @@ namespace ServerApplication.Version1.Controllers
         {
             return _paitentVisiteRepository.createVisite(paitentvisite);
         }
+
+        [HttpGet]
+        [Route("GetAllAssignPaitent/{emplooyeeId}")]
+        public Task<List<paitentvisite>> GetAllAssignPaitent(int emplooyeeId )
+        {
+            return _paitentVisiteRepository.GetAllAssignPaitent(emplooyeeId);
+        }
+
     }
 }

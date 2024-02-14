@@ -29,6 +29,23 @@ namespace ServerApplication.Version1.Infrastructure
                 throw;
             }
         }
+
+        public async Task<List<paitent>> GetPaitentByPaitentId(int paitentId)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<paitent> converter = new DynamicModelConverter<paitent>();
+                List<paitent> paitents = new List<paitent>();
+                string query = $@"SELECT * FROM paitent where paitentId = {paitentId}";
+                paitents = converter.Get(connection.ConnectionString, query);
+                return paitents;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<int> createPaitent(paitent paitent)
         {
             try

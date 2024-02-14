@@ -22,6 +22,13 @@ namespace ServerApplication.Version1.Controllers
             return _paitentRepository.GetAll();
         }
 
+        [HttpGet]
+        [Route("GetPaitentByPaitentId/{paitentId}")]
+        public Task<List<paitent>> GetPaitentByPaitentId(int paitentId)
+        {
+            return _paitentRepository.GetPaitentByPaitentId(paitentId);
+        }
+
 
         [HttpPost]
         [Route("Add")]

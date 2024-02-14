@@ -12,6 +12,24 @@ namespace ServerApplication.Version1.Infrastructure
         {
             _configuration = configuration;
         }
+
+        public async Task<List<paitentvisite>> GetAllAssignPaitent(int employeeId)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<paitentvisite> converter = new DynamicModelConverter<paitentvisite>();
+                List<paitentvisite> employees = new List<paitentvisite>();
+                string query = $"select * from paitentvisite where assigntoid = {employeeId} ";
+                employees = converter.Get(connection.ConnectionString, query);
+                return employees;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<int> createVisite(paitentvisite paitentvisite)
         {
             try
