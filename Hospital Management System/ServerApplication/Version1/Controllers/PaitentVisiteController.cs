@@ -16,16 +16,23 @@ namespace ServerApplication.Version1.Controllers
         }
         [HttpPost]
         [Route("Add")]
-        public Task<int> Add(paitentvisite paitentvisite)
+        public Task<int> Add(PaitentVisite? paitentvisite)
         {
             return _paitentVisiteRepository.createVisite(paitentvisite);
         }
 
         [HttpGet]
-        [Route("GetAllAssignPaitent/{emplooyeeId}")]
-        public Task<List<paitentvisite>> GetAllAssignPaitent(int emplooyeeId )
+        [Route("GetAllAssignPaitent/{emplooyeeId}/{paitentId}")]
+        public Task<List<Getpaitentvisite>> GetAllAssignPaitent(int emplooyeeId,int paitentId)
         {
-            return _paitentVisiteRepository.GetAllAssignPaitent(emplooyeeId);
+            return _paitentVisiteRepository.GetAllAssignPaitent(emplooyeeId,paitentId);
+        }
+
+        [HttpGet]
+        [Route("GetAllAssignPaitentInfo/{emplooyeeId}")]
+        public Task<List<paitentvisiteInfo>> GetAllAssignPaitenInfo(int emplooyeeId)
+        {
+            return _paitentVisiteRepository.GetAllAssignPaitentInfo(emplooyeeId);
         }
 
     }
