@@ -5,5 +5,7 @@ namespace ServerApplication.Version1.Infrastructure
     public interface IMedicineRepository
     {
         public Task<List<Medicine>> GetAllMedicine();
+
+        public Task<List<MedicalDepartment>> GetAllPaitentForPayment();
     }
 }

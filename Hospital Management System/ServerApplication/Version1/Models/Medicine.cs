@@ -20,4 +20,21 @@ namespace ServerApplication.Version1.Models
         public Boolean IsActive { get; set; }
         
     }
+
+    public class MedicalDepartment
+    {
+        public int PaitentVisiteId { get; set; }    
+
+        public int PaitentId { get; set; }
+        public string PaitentName { get; set; }
+        public int AddedById { get; set; }
+
+        public string AddedByName { get; set; }
+
+        public string MedicineIds { get; set; }
+
+        public string Status { get; set; }
+
+        public string MedicineNames { get; set; }
+    }
 }

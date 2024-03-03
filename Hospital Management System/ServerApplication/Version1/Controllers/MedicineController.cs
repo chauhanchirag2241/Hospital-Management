@@ -21,5 +21,11 @@ namespace ServerApplication.Version1.Controllers
         {
             return _medicineRepository.GetAllMedicine();
         }
+        [HttpGet]
+        [Route("GetAllPaitentForPayment")]
+        public Task<List<MedicalDepartment>> GetAllPaitentForPayment()
+        {
+            return _medicineRepository.GetAllPaitentForPayment();
+        }
     }
 }
