@@ -42,7 +42,7 @@ namespace ServerApplication.Version1.Infrastructure
                 string query = $@"SELECT pv.paitentid,p.firstname as paitentname,e.employeename as assignbyname,pv.description,pv.status,pv.medicineids FROM paitentvisite pv
                                 LEFT JOIN paitent p ON pv.paitentid = p.paitentid
                                 LEFT JOIN employee e ON e.employeeid = pv.addedbyid
-                                WHERE pv.assigntoid  = { employeeId} ";
+                                WHERE pv.assigntoid  = { employeeId} and pv.isactive = 1";
                 employees = converter.Get(connection.ConnectionString, query);
                 return employees;
             }

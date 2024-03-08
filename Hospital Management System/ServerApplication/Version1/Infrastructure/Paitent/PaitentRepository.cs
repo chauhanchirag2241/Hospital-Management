@@ -20,7 +20,7 @@ namespace ServerApplication.Version1.Infrastructure
                 SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
                 DynamicModelConverter<paitent> converter = new DynamicModelConverter<paitent>();
                 List<paitent> paitents = new List<paitent>();
-                string query = $@"SELECT * FROM paitent";
+                string query = $@"SELECT * FROM paitent WHERE isactive = 1";
                 paitents = converter.Get(connection.ConnectionString, query);
                 return paitents;
             }

@@ -29,7 +29,22 @@ namespace ServerApplication.Version1.Infrastructure
                 throw;
             }
         }
-
+        public async Task<List<Employee>> GetAllDoctor()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<Employee> converter = new DynamicModelConverter<Employee>();
+                List<Employee> employees = new List<Employee>();
+                string query = $"SELECT * FROM employee WHERE employeetype = 1 ";
+                employees = converter.Get(connection.ConnectionString, query);
+                return employees;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<List<Employee>> GetAllEmployee()
         {
             try

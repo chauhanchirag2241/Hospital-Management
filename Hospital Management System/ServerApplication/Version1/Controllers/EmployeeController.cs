@@ -29,6 +29,13 @@ namespace ServerApplication.Version1.Controllers
             return _employeeRepository.GetDoctor(depId);
         }
 
+        [HttpGet]
+        [Route("GetAllDoctor")]
+        public Task<List<Employee>> GetAllDoctor()
+        {
+            return _employeeRepository.GetAllDoctor();
+        }
+
         [HttpPost]
         [Route("Add")]
         public Task<int> Add(Employee employee)

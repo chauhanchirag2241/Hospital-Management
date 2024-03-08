@@ -27,5 +27,12 @@ namespace ServerApplication.Version1.Controllers
         {
             return _medicineRepository.GetAllPaitentForPayment();
         }
+
+        [HttpPost]
+        [Route("CreateBill")]
+        public Task<int> CreateBill(List<medicineBill> medicineBill)
+        {
+            return _medicineRepository.CreateBill(medicineBill);
+        }
     }
 }
