@@ -35,5 +35,17 @@ namespace ServerApplication.Version1.Controllers
             return _paitentVisiteRepository.GetAllAssignPaitentInfo(emplooyeeId);
         }
 
+        [HttpGet]
+        [Route("GetPaitentDetailByPaitentId/{paitentId}/{email}")]
+        public Task<List<paitentVisiteByPaitentId>>  GetPaitentDetailByPaitentId(int paitentId,string email)
+        {
+            return _paitentVisiteRepository.GetPaitentDetailByPaitentId(paitentId, email);
+        }
+        [HttpGet]
+        [Route("GetMedicineByPaitentId/{paitentId}/{email}")]
+        public Task<List<medicineByPaitentId>> GetMedicineByPaitentId(int paitentId, string email)
+        {
+            return _paitentVisiteRepository.GetMedicineByPaitentId(paitentId, email);
+        }
     }
 }

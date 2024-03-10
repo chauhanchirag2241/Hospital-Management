@@ -52,6 +52,70 @@ namespace ServerApplication.Version1.Infrastructure
             }
         }
 
+        public async Task<List<paitentVisiteByPaitentId>> GetPaitentDetailByPaitentId(int paitentId,string email)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<paitentVisiteByPaitentId> converter = new DynamicModelConverter<paitentVisiteByPaitentId>();
+                List<paitentVisiteByPaitentId> paitentvisite = new List<paitentVisiteByPaitentId>();
+
+                string query = $@"SELECT 
+                                        pv.paitentvisiteid,
+                                        pv.paitentid,
+                                        p.firstname AS paitentname,
+                                        e.employeename AS addedbyname,
+                                        e.employeecode,
+                                        e.qualification,
+                                        pv.description,
+                                        STRING_AGG(m.medicinename, ', ') AS medicinenames -- Concatenate medicine names
+                                                FROM   paitentvisite pv
+                                                LEFT JOIN  paitent p ON pv.paitentid = p.paitentid
+                                                LEFT JOIN  employee e ON pv.addedbyid = e.employeeid
+                                                LEFT JOIN  (SELECT medicineid,medicinename FROM medicine) m ON CHARINDEX(',' + CAST(m.medicineid AS NVARCHAR(100)) + ',', ',' + pv.medicineids + ',') > 0
+                                                WHERE 
+                                                    pv.paitentid = {paitentId} and p.email = '{email}'
+                                                    AND pv.isactive = 0
+                                                GROUP BY
+                                                    pv.paitentvisiteid,
+                                                    pv.paitentid,
+                                                    p.firstname,
+                                                    e.employeename,
+                                                    e.employeecode,
+                                                    e.qualification,
+                                                   pv.description;";
+
+                paitentvisite = converter.Get(connection.ConnectionString, query);
+                return paitentvisite;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<medicineByPaitentId>> GetMedicineByPaitentId(int paitentId, string email)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("ConHMS").ToString());
+                DynamicModelConverter<medicineByPaitentId> converter = new DynamicModelConverter<medicineByPaitentId>();
+                List<medicineByPaitentId> medicinebill = new List<medicineByPaitentId>();
+
+                string query = $@"SELECT mb.paitentid,p.firstname as paitentname,mb.medicinename,mb.quantity,mb.amount FROM
+                                         medicinebill mb
+                                         LEFT JOIN paitent p ON mb.paitentid = p.paitentid 
+                                         WHERE mb.paitentid = 2 AND p.email = 'nahir@gmail.com' ";
+
+                medicinebill = converter.Get(connection.ConnectionString, query);
+                return medicinebill;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<int> createVisite(PaitentVisite paitentvisite)
         {
             try

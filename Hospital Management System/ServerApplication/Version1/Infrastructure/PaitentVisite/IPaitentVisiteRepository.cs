@@ -7,5 +7,7 @@ namespace ServerApplication.Version1.Infrastructure
         public Task<int> createVisite(PaitentVisite paitentvisite);
         public  Task<List<Getpaitentvisite>> GetAllAssignPaitent(int GetAllAssignPaitent, int paitentId);
         public  Task<List<paitentvisiteInfo>> GetAllAssignPaitentInfo(int GetAllAssignPaitent);
+        public Task<List<paitentVisiteByPaitentId>> GetPaitentDetailByPaitentId(int paitentId,string email);
+        public Task<List<medicineByPaitentId>> GetMedicineByPaitentId(int paitentId, string email);
     }
 }
